@@ -1,0 +1,134 @@
+[
+  {
+    "morador": "Morador de teste 01",
+    "apto": "CI-101",
+    "email": "morador01@example.invalid",
+    "bicicleta": null,
+    "pet": null,
+    "nome_pet": null,
+    "tipo": "Proprietário",
+    "ativo": true,
+    "veiculos": [{ "tipo": "Carro", "placa": "CI00001", "marca_modelo": "Veículo de teste 01" }]
+  },
+  {
+    "morador": "Morador de teste 02",
+    "apto": "CI-102",
+    "email": "morador02@example.invalid",
+    "bicicleta": null,
+    "pet": null,
+    "nome_pet": null,
+    "tipo": "Proprietário",
+    "ativo": true,
+    "veiculos": [{ "tipo": "Carro", "placa": "CI00002", "marca_modelo": "Veículo de teste 02" }]
+  },
+  {
+    "morador": "Morador de teste 03",
+    "apto": "CI-103",
+    "email": null,
+    "bicicleta": "Bicicleta de teste 03",
+    "pet": null,
+    "nome_pet": null,
+    "tipo": "Proprietário",
+    "ativo": true,
+    "veiculos": [{ "tipo": "Carro", "placa": "CI00003", "marca_modelo": "Veículo de teste 03" }]
+  },
+  {
+    "morador": "Morador de teste 04",
+    "apto": "CI-104",
+    "email": null,
+    "bicicleta": "Bicicleta de teste 04",
+    "pet": null,
+    "nome_pet": null,
+    "tipo": "Proprietário",
+    "ativo": true,
+    "veiculos": [{ "tipo": "Carro", "placa": "CI00004", "marca_modelo": "Veículo de teste 04" }]
+  },
+  {
+    "morador": "Morador de teste 05",
+    "apto": "CI-105",
+    "email": null,
+    "bicicleta": null,
+    "pet": "Cachorro",
+    "nome_pet": null,
+    "tipo": "Proprietário",
+    "ativo": true,
+    "veiculos": [{ "tipo": "Carro", "placa": "CI00005", "marca_modelo": "Veículo de teste 05" }]
+  },
+  {
+    "morador": "Morador de teste 06",
+    "apto": "CI-106",
+    "email": null,
+    "bicicleta": null,
+    "pet": "Gato",
+    "nome_pet": null,
+    "tipo": "Proprietário",
+    "ativo": true,
+    "veiculos": [{ "tipo": "Carro", "placa": "CI00006", "marca_modelo": "Veículo de teste 06" }]
+  },
+  {
+    "morador": "Morador de teste 07",
+    "apto": "CI-107",
+    "email": null,
+    "bicicleta": null,
+    "pet": null,
+    "nome_pet": null,
+    "tipo": "Proprietário",
+    "ativo": true,
+    "veiculos": [{ "tipo": "Carro", "placa": "CI00007", "marca_modelo": "Veículo de teste 07" }]
+  },
+  {
+    "morador": "Morador de teste 08",
+    "apto": "CI-107",
+    "email": null,
+    "bicicleta": null,
+    "pet": null,
+    "nome_pet": null,
+    "tipo": "Proprietário",
+    "ativo": true,
+    "veiculos": [{ "tipo": "Moto", "placa": "CI00008", "marca_modelo": "Veículo de teste 08" }]
+  },
+  {
+    "morador": "Morador de teste 09",
+    "apto": "CI-107",
+    "email": null,
+    "bicicleta": null,
+    "pet": null,
+    "nome_pet": null,
+    "tipo": "Proprietário",
+    "ativo": true,
+    "veiculos": []
+  },
+  {
+    "morador": "Morador de teste 10",
+    "apto": "CI-108",
+    "email": null,
+    "bicicleta": null,
+    "pet": null,
+    "nome_pet": null,
+    "tipo": "Proprietário",
+    "ativo": true,
+    "veiculos": []
+  },
+  {
+    "morador": "Morador de teste 11",
+    "apto": "CI-108",
+    "email": null,
+    "bicicleta": null,
+    "pet": null,
+    "nome_pet": null,
+    "tipo": "Locatário",
+    "ativo": true,
+    "veiculos": []
+  },
+  {
+    "morador": "Morador de teste 12",
+    "apto": "CI-108",
+    "email": null,
+    "bicicleta": null,
+    "pet": null,
+    "nome_pet": null,
+    "tipo": "Outros",
+    "ativo": false,
+    "veiculos": []
+  }
+]
