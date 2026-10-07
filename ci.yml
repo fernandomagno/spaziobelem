@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            /*.html
+            /*.js
+            /*.css
+            /package.json
+            /tests/fixtures/
+          sparse-checkout-cone-mode: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Check JavaScript syntax
+        run: |
+          while IFS= read -r -d '' file; do
+            node --check "$file"
+          done < <(find . -type f -name '*.js' -not -path './node_modules/*' -print0)
+
+      - name: Smoke test server
+        run: |
+          test_dir="$(mktemp -d)"
+          cp *.html *.js *.css "$test_dir/"
+          PORT=3000 node "$test_dir/server.js" &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true; rm -rf "$test_dir"' EXIT
+          curl --retry 10 --retry-connrefused --retry-delay 1 --retry-max-time 15 -fsS http://127.0.0.1:3000/api/v1/moradores > /dev/null
+          node <<'NODE'
+          const fs = require('node:fs');
+
+          async function main() {
+            const fixture = JSON.parse(fs.readFileSync('tests/fixtures/moradores.json', 'utf8'));
+            const baseUrl = 'http://127.0.0.1:3000';
+
+            for (const residente of fixture) {
+              const { ativo, ...dados } = residente;
+              const resposta = await fetch(`${baseUrl}/api/moradores`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dados)
+              });
+              if (!resposta.ok) throw new Error(`Falha ao cadastrar fixture: HTTP ${resposta.status}`);
+              const criado = await resposta.json();
+
+              if (!ativo) {
+                const inativacao = await fetch(`${baseUrl}/api/v1/moradores/${criado.id}`, { method: 'PATCH' });
+                if (!inativacao.ok) throw new Error(`Falha ao inativar fixture: HTTP ${inativacao.status}`);
+              }
+            }
+
+            const todos = await (await fetch(`${baseUrl}/api/moradores`)).json();
+            const ativos = await (await fetch(`${baseUrl}/api/v1/moradores`)).json();
+            const totalVeiculos = todos.reduce((total, residente) => total + residente.veiculos.length, 0);
+            if (todos.length !== fixture.length || ativos.length !== 11 || totalVeiculos !== 8) {
+              throw new Error(`Fixture divergente: ${todos.length} moradores, ${ativos.length} ativos e ${totalVeiculos} veículos.`);
+            }
+            console.log(`Fixture anonimizada validada: ${todos.length} moradores e ${totalVeiculos} veículos.`);
+          }
+
+          main().catch(erro => {
+            console.error(erro);
+            process.exitCode = 1;
+          });
+          NODE
+          curl -fsS http://127.0.0.1:3000/v1/editar-moradores.html | grep -q 'id="limparEdicao"'
