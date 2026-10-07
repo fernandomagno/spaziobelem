@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Moradores</title>
+  <link rel="stylesheet" href="/v1/style.css">
+</head>
+<body>
+  <header>
+    <a href="/v1/" class="marca"><span class="logo">P<i class="online"></i></span>Portaria</a>
+    <nav class="nav">
+      <a href="/v1/">Busca</a>
+      <a href="/v1/cadastro-moradores.html" class="ativo">Cadastro</a>
+      <a href="/v1/editar-moradores.html">Edição</a>
+      <a href="/v1/detalhes-moradores.html">Detalhes</a>
+      <a href="/v1/inativar-moradores.html">Inativação</a>
+      <a href="/v1/movimentacao-veiculos.html">Movimentação</a>
+      <a href="/v1/atualizacao-cadastro.html">Relatório</a>
+    </nav>
+    <h1>Cadastro de Moradores</h1>
+  </header>
+  <div class="subbar"><span>Portaria · <strong>Cadastro</strong></span><span>v1</span></div>
+
+  <main class="pagina-cadastro">
+    <form id="formCadastro" class="cadastro cadastro-moradores" autocomplete="off">
+      <div class="campo-cadastro">
+        <label for="apto">Apto</label>
+        <select id="apto" name="apto" required>
+          <option value="">Selecione o apartamento...</option>
+        </select>
+      </div>
+
+      <div class="campo-cadastro">
+        <label for="tipo">Tipo de Morador</label>
+        <select id="tipo" name="tipo" required>
+          <option value="">Selecione...</option>
+          <option value="Proprietário">Proprietário</option>
+          <option value="Locatário">Locatário</option>
+          <option value="Outros">Outros</option>
+        </select>
+      </div>
+
+      <div class="campo-cadastro">
+        <label for="morador">Morador</label>
+        <input type="text" id="morador" name="morador" maxlength="100" required>
+      </div>
+
+      <div class="campo-cadastro">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" maxlength="254" placeholder="nome@exemplo.com">
+      </div>
+
+      <div class="campo-cadastro campo-veiculos">
+        <label>Carros e motos</label>
+        <div id="listaVeiculos" class="lista-veiculos"></div>
+        <button type="button" id="adicionarVeiculo" class="botao-secundario">+ Adicionar veículo</button>
+      </div>
+
+      <div class="campo-cadastro campo-bicicleta">
+        <label for="bicicleta">Bicicleta</label>
+        <input type="text" id="bicicleta" name="bicicleta" maxlength="120" placeholder="Ex.: Caloi aro 29">
+      </div>
+
+      <div class="campo-cadastro campo-pet">
+        <label for="pet">Pet</label>
+        <select id="pet" name="pet">
+          <option value="">Não possui pet</option>
+          <option value="Cachorro">Cachorro</option>
+          <option value="Gato">Gato</option>
+          <option value="Outros">Outros</option>
+        </select>
+      </div>
+
+      <div class="campo-cadastro campo-pet">
+        <label for="nome_pet">Nome do pet</label>
+        <input type="text" id="nome_pet" name="nome_pet" maxlength="120" placeholder="Ex.: Thor">
+      </div>
+
+      <button type="submit">Salvar cadastro</button>
+      <p id="mensagem" class="mensagem" aria-live="polite"></p>
+    </form>
+  </main>
+
+  <script src="/v1/cadastro.js"></script>
+</body>
+</html>

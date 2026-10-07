@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes Moradores</title>
+  <link rel="stylesheet" href="/v1/style.css">
+</head>
+<body>
+  <header>
+    <a href="/v1/" class="marca"><span class="logo">P<i class="online"></i></span>Portaria</a>
+    <nav class="nav">
+      <a href="/v1/">Busca</a>
+      <a href="/v1/cadastro-moradores.html">Cadastro</a>
+      <a href="/v1/editar-moradores.html">Edição</a>
+      <a href="/v1/detalhes-moradores.html" class="ativo">Detalhes</a>
+      <a href="/v1/inativar-moradores.html">Inativação</a>
+      <a href="/v1/movimentacao-veiculos.html">Movimentação</a>
+      <a href="/v1/atualizacao-cadastro.html">Relatório</a>
+    </nav>
+    <h1>Detalhes Moradores</h1>
+  </header>
+  <div class="subbar"><span>Portaria · <strong>Detalhes</strong></span><span>v1</span></div>
+
+  <main>
+    <div class="tabela-container">
+      <table class="tabela">
+        <thead>
+          <tr>
+            <th>Morador</th>
+            <th>Apto</th>
+            <th>E-mail</th>
+            <th>Bicicleta</th>
+            <th>Pet</th>
+            <th>Carro/Moto</th>
+            <th>Placa</th>
+            <th>Marca/Modelo</th>
+          </tr>
+        </thead>
+        <tbody id="corpoTabela"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    const corpo = document.getElementById("corpoTabela");
+
+    function linhaUnica(texto) {
+      const tr = corpo.insertRow();
+      const td = tr.insertCell();
+      td.colSpan = 8;
+      td.className = "vazio";
+      td.textContent = texto;
+    }
+
+    fetch("/api/v1/moradores")
+      .then(resp => resp.json())
+      .then(moradores => {
+        if (moradores.length === 0) return linhaUnica("Nenhum morador cadastrado.");
+        moradores.forEach(m => {
+          const tr = corpo.insertRow();
+          const veiculos = m.veiculos ?? [];
+          const valores = [m.morador, m.apto, m.email, m.bicicleta, [m.pet, m.nome_pet].filter(Boolean).join(" · ") || null,
+            veiculos.map(v => v.tipo).join(", ") || m.veiculo,
+            veiculos.map(v => v.placa).filter(Boolean).join(", ") || m.placa,
+            veiculos.map(v => v.marca_modelo).filter(Boolean).join(", ") || m.marca_modelo];
+          valores.forEach(valor => {
+            tr.insertCell().textContent = valor ?? "-";
+          });
+        });
+      })
+      .catch(() => linhaUnica("Não foi possível conectar ao servidor."));
+  </script>
+</body>
+</html>

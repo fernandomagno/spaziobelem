@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movimentação de Veículos</title>
+  <link rel="stylesheet" href="/v1/style.css">
+</head>
+<body>
+  <header>
+    <a href="/v1/" class="marca"><span class="logo">P<i class="online"></i></span>Portaria</a>
+    <nav class="nav">
+      <a href="/v1/">Busca</a>
+      <a href="/v1/cadastro-moradores.html">Cadastro</a>
+      <a href="/v1/editar-moradores.html">Edição</a>
+      <a href="/v1/detalhes-moradores.html">Detalhes</a>
+      <a href="/v1/inativar-moradores.html">Inativação</a>
+      <a href="/v1/movimentacao-veiculos.html" class="ativo">Movimentação</a>
+      <a href="/v1/atualizacao-cadastro.html">Relatório</a>
+    </nav>
+    <h1>Movimentação de Veículos</h1>
+  </header>
+  <div class="subbar"><span>Portaria · <strong>Movimentação</strong></span><span>v1</span></div>
+
+  <main class="pagina-movimentacao">
+    <form id="formMovimentacao" class="form-movimentacao" autocomplete="off">
+      <div>
+        <label for="veiculo">Carro</label>
+        <select id="veiculo" name="veiculo_id" required>
+          <option value="">Carregando...</option>
+        </select>
+      </div>
+      <div class="acoes-movimentacao">
+        <button class="botao-movimento entrada" type="submit" value="Entrada">Registrar entrada</button>
+        <button class="botao-movimento saida" type="submit" value="Saída">Registrar saída</button>
+      </div>
+    </form>
+    <p id="mensagem" class="mensagem" aria-live="polite"></p>
+
+    <h2>Movimentações recentes</h2>
+    <div class="tabela-container">
+      <table class="tabela tabela-movimentacoes">
+        <thead>
+          <tr>
+            <th>Data/hora</th>
+            <th>Apto</th>
+            <th>Nome</th>
+            <th>Placa</th>
+            <th>Marca/Modelo</th>
+            <th>Entrada/Saída</th>
+          </tr>
+        </thead>
+        <tbody id="corpoTabela"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="/v1/movimentacao-veiculos.js"></script>
+</body>
+</html>

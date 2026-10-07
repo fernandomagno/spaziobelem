@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atualização de Cadastro</title>
+  <link rel="stylesheet" href="/v1/style.css">
+</head>
+<body>
+  <header>
+    <a href="/v1/" class="marca"><span class="logo">P<i class="online"></i></span>Portaria</a>
+    <nav class="nav">
+      <a href="/v1/">Busca</a>
+      <a href="/v1/cadastro-moradores.html">Cadastro</a>
+      <a href="/v1/editar-moradores.html">Edição</a>
+      <a href="/v1/detalhes-moradores.html">Detalhes</a>
+      <a href="/v1/inativar-moradores.html">Inativação</a>
+      <a href="/v1/movimentacao-veiculos.html">Movimentação</a>
+      <a href="/v1/atualizacao-cadastro.html" class="ativo">Relatório</a>
+    </nav>
+    <h1>Atualização de Cadastro</h1>
+    <p>Acompanhamento das unidades do condomínio</p>
+  </header>
+  <div class="subbar"><span>Portaria · <strong>Atualização de Cadastro</strong></span><span>v1</span></div>
+
+  <main class="pagina-relatorio">
+    <section class="resumo-relatorio" aria-label="Resumo dos cadastros">
+      <div><span id="totalUnidades">120</span><small>Unidades</small></div>
+      <div><span id="totalCadastradas">-</span><small>Cadastradas</small></div>
+      <div><span id="totalPendentes">-</span><small>Sem cadastro</small></div>
+    </section>
+
+    <div class="controles-relatorio">
+      <label class="busca-relatorio" for="buscaUnidade">
+        <span>Buscar unidade ou morador</span>
+        <input type="search" id="buscaUnidade" placeholder="Ex.: 11 ou Maria">
+      </label>
+      <label class="filtro-relatorio" for="filtroStatus">
+        <span>Status</span>
+        <select id="filtroStatus">
+          <option value="todas">Todas as unidades</option>
+          <option value="cadastrada">Cadastradas</option>
+          <option value="pendente">Sem cadastro</option>
+        </select>
+      </label>
+    </div>
+
+    <p id="mensagemRelatorio" class="mensagem" aria-live="polite">Carregando unidades...</p>
+    <div id="andares" class="andares-relatorio"></div>
+  </main>
+
+  <script src="/v1/atualizacao-cadastro.js"></script>
+</body>
+</html>
